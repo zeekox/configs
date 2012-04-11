@@ -1,3 +1,5 @@
+-- AWESOME CONFIG FILE
+
 -- Standard awesome library
 require("awful")
 require("awful.autofocus")
