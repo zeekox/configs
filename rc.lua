@@ -354,16 +354,18 @@ awful.rules.rules = {
                      maximized_vertical   = false,
                      maximized_horizontal = false,
                      buttons = clientbuttons } },
-    { rule = { class = "firefox" },
-      properties = { floating = fale }, tags[3] },
+   -- { rule = { class = "firefox" },
+   --   properties = { floating = false }, tags[3] },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
-    { rule = { class = "pidgin" },
-      properties = { tag = tags[4] } }
+    { rule = { class = "Pidgin" },
+      properties = { tag = tags[1][4] } },
+    { rule = { class = "Pidgin", role="conversation" },
+      properties = { tag = tags[1][4] } }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
