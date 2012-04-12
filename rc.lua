@@ -70,21 +70,30 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {
-   names  = { "term", "code", "web", "im" },
-   layout = { layouts[1], layouts[1], layouts[1], layouts[5]}
-    }
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+ tags = {
+   settings = {
+     {
+       names  = { "term", "code", "web", "im" },
+	   layout = { layouts[2], layouts[12], layouts[1], layouts[2]}
+     },
+     { 
+       names  = { "mail",  "media" },
+       layout = { layouts[4], layouts[3]}
+ }}}
+ 
+ for s = 1, screen.count() do
+     tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
+ end
+--end
 -- }}}
+
+
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "edit config", "gvim " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -353,7 +362,7 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
-    { rule = { class = "Pidgin" },
+    { rule = { class = "pidgin" },
       properties = { tag = tags[4] } }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
