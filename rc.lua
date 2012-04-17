@@ -356,21 +356,25 @@ awful.rules.rules = {
                      maximized_vertical   = false,
                      maximized_horizontal = false,
                      buttons = clientbuttons } },
-   -- { rule = { class = "firefox" },
-   --   properties = { floating = false }, tags[3] },
+    { rule = { class = "Firefox" },
+      properties = { floating = true }, 
+      callback = function(c)
+          local screengeom = screen[mouse.screen].workarea
+          width  = screengeom.width  * 0.70
+          height = screengeom.height * 0.90
+          c:geometry({x = screengeom.width, y = screengeom.y, width = width, height = height })
+      end
+    },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
-    { rule = { class = "Pidgin" },
-      properties = { tag = tags[1][4] } },
+    { rule = { class = "Pidgin", role = "buddy_list" },
+      properties = { tag = tags[1][4], floating= true } },
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[1][4] } }
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
 }
 -- }}}
 
