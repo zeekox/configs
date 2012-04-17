@@ -211,12 +211,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "j",
-        function ()
+    --awful.key({ modkey,           }, "j",
+    awful.key({ "Mod1" }, "Tab",
+    function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "k",
+    --awful.key({ modkey,           }, "k",
+    awful.key({ "Mod1", "Shift" }, "Tab",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -291,7 +293,7 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ modkey,           }, "F12",    function () awful.util.spawn_with_shell("xlock -mode tetris") end)
+    awful.key({ modkey,           }, "F12",    function () awful.util.spawn_with_shell("xlock -mode random") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
