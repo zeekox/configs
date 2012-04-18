@@ -8,6 +8,7 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
+require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -109,7 +110,16 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m %R ", 60)
+
+-- {{{ Battery state
+baticon = widget({ type = "imagebox" })
+baticon.image = image(beautiful.widget_bat)
+-- Initialize widget
+batwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
+-- }}}
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -190,6 +200,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
+        --batwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -356,7 +367,7 @@ awful.rules.rules = {
                      maximized_vertical   = false,
                      maximized_horizontal = false,
                      buttons = clientbuttons } },
-    { rule = { class = "Firefox" },
+    { rule = { class = "Firefox", instance = "Navigator" },
       properties = { floating = true }, 
       callback = function(c)
           local screengeom = screen[mouse.screen].workarea
