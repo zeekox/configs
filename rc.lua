@@ -41,7 +41,7 @@ beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
-editor = os.getenv("EDITOR") or "vim"
+editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -94,7 +94,7 @@ layouts =
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", "gvim " .. awesome.conffile },
+   { "edit config", editor_cmd .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -385,7 +385,9 @@ awful.rules.rules = {
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = tags[1][4], floating= true } },
     { rule = { class = "Pidgin", role="conversation" },
-      properties = { tag = tags[1][4] } }
+      properties = { tag = tags[1][4] } },
+	{ rule = { class = "Thunderbird"},
+      properties = { floating = false, tag = tags[2][1] } }
 }
 -- }}}
 
@@ -418,4 +420,17 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- Autorun programs
+autorun = true
+autorunApps = 
+{ 
+   "pidgin",
+   "thunderbird"
+}
+if autorun then
+   for app = 1, #autorunApps do
+       awful.util.spawn(autorunApps[app])
+   end
+end
 -- }}}
