@@ -304,7 +304,7 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ modkey,           }, "F12",    function () awful.util.spawn_with_shell("xlock -mode random") end)
+    awful.key({ modkey,  }, "F12",    function () awful.util.spawn_with_shell("xlock -mode blank") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -372,8 +372,8 @@ awful.rules.rules = {
       callback = function(c)
           local screengeom = screen[mouse.screen].workarea
           width  = screengeom.width  * 0.70
-          height = screengeom.height * 0.90
-          c:geometry({x = screengeom.width, y = screengeom.y, width = width, height = height })
+          height = screengeom.height
+          c:geometry({x = screengeom.x + ((screengeom.width - width) / 2), y = screengeom.y, width = width, height = height })
       end
     },
     { rule = { class = "pinentry" },
