@@ -40,7 +40,7 @@ end
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
+terminal = "gnome-terminal"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -74,11 +74,11 @@ layouts =
  tags = {
    settings = {
      {
-       names  = { "term", "code", "web", "im" },
-	   layout = { layouts[2], layouts[12], layouts[1], layouts[2]}
+       names  = { "☭", "⌥", "☼", "⌘"},
+	      layout = { layouts[1], layouts[2], layouts[12], layouts[2]}
      },
      { 
-       names  = { "mail",  "media" },
+       names  = { "☭", "⌥" },
        layout = { layouts[4], layouts[3]}
  }}}
  
@@ -200,7 +200,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
-        --batwidget,
+        -- batwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -277,12 +277,12 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
               
-    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 5%+") end),
-    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 5%-") end),
-    awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
-    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("firefox") end),
-    awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
-    awful.key({ }, "XF86Search",    function () awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse") end)
+--    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 5%+") end),
+  --  awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 5%-") end),
+   -- awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
+   -- awful.key({ }, "XF86HomePage",    function () awful.util.spawn("firefox") end),
+   -- awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
+--    awful.key({ }, "XF86Search",    function () awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -387,7 +387,7 @@ awful.rules.rules = {
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[1][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[2][1] } }
+      properties = { floating = false, tag = tags[1][1] } }
 }
 -- }}}
 
@@ -421,16 +421,3 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
--- Autorun programs
-autorun = true
-autorunApps = 
-{ 
-   "pidgin",
-   "thunderbird"
-}
-if autorun then
-   for app = 1, #autorunApps do
-       awful.util.spawn(autorunApps[app])
-   end
-end
--- }}}
