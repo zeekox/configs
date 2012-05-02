@@ -74,11 +74,11 @@ layouts =
  tags = {
    settings = {
      {
-       names  = { "term", "code", "web", "im" },
+       names  = { "☭", "⌥", "☼", "⌘"},
 	   layout = { layouts[2], layouts[12], layouts[1], layouts[2]}
      },
      { 
-       names  = { "mail",  "media" },
+       names  = { "⌘", "☼" },
        layout = { layouts[4], layouts[3]}
  }}}
  
