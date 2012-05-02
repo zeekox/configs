@@ -388,7 +388,7 @@ awful.rules.rules = {
       properties = { tag = tags[1][4] } },
 	{ rule = { class = "Thunderbird"},
       properties = { floating = false, tag = tags[2][1] } },
-	{ rule = { class = "Thunderbird", role="Write"},
+	{ rule = { class = "Thunderbird", role="Msgcompose"},
       properties = { floating = false, tag = tags[1][1] } }
 }
 -- }}}
