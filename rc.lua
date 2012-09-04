@@ -40,7 +40,7 @@ end
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
+terminal = "urxvt256c"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -75,7 +75,7 @@ layouts =
    settings = {
      {
        names  = { "☭", "⌥", "☼", "⌘"},
-	   layout = { layouts[2], layouts[12], layouts[1], layouts[2]}
+	   layout = { layouts[2], layouts[10], layouts[1], layouts[2]}
      },
      { 
        names  = { "⌘", "☼" },
@@ -280,7 +280,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 5%+") end),
     awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 5%-") end),
     awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
-    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("firefox") end),
+    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("/home/mcarabotti/bin/firefox.sh") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse") end)
 )
@@ -382,6 +382,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
+    --{ rule = { class = "Eclipse" },
+    --  properties = { tag = tags[1][2] } },
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = tags[1][4], floating= true } },
     { rule = { class = "Pidgin", role="conversation" },
@@ -437,6 +439,9 @@ if autorun then
 end
 
 awful.util.spawn_with_shell("wmname LG3D");
-awful.util.spawn_with_shell("xautolock -locker 'xlock -mode blank'");
+awful.util.spawn_with_shell("xautolock -locker 'xlock'");
+awful.util.spawn_with_shell(terminal, 1);
+awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
+
 
 -- }}}

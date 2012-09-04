@@ -1,11 +1,12 @@
 ##################
 #      GTK       #
 ##################
-include "/usr/share/themes/Atolm-gtk3/gtk-2.0/gtkrc"
+#include "/usr/share/themes/Atolm-gtk3/gtk-2.0/gtkrc"
 #include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
 
 #To set the icon theme
-gtk-theme-name = "Atolm-gtk3"
+#gtk-theme-name = "Atolm-gtk3"
+gtk-theme-name = "Adwaita-Dark"
 
 gtk-icon-theme-name = "Fedora"
 gtk-toolbar-style   = GTK_TOOLBAR_ICONS
