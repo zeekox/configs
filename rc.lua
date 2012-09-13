@@ -74,12 +74,12 @@ layouts =
  tags = {
    settings = {
      {
-       names  = { "☭", "⌥", "☼", "⌘"},
+       names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
 	   layout = { layouts[2], layouts[10], layouts[1], layouts[2]}
      },
      { 
-       names  = { "⌘", "☼" },
-       layout = { layouts[4], layouts[3]}
+       names  = { "ڞ", "ऄ", "Ԡ", "†"},
+	   layout = { layouts[2], layouts[10], layouts[10], layouts[2]}
  }}}
  
  for s = 1, screen.count() do
@@ -389,7 +389,7 @@ awful.rules.rules = {
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[1][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[2][1] } },
+      properties = { floating = false, tag = tags[2][2] } },
 	{ rule = { class = "Thunderbird", role="Msgcompose"},
       properties = { floating = false, tag = tags[1][1] } }
 }

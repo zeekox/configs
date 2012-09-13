@@ -1,0 +1,30 @@
+[user]
+	name = Mauro Carabotti\n
+	email = carabotti@puzzle.ch
+[http]
+        sslVerify = false
+        postBuffer = 524288000
+[color]
+        ui = true
+[core]
+	excludesfile = /home/mcarabotti/.gitignore_global
+	editor = vim
+[diff]
+	#external = /home/mcarabotti/bin/git_diff.py
+[alias]
+	#meld = !/home/mcarabotti/bin/git-meld.pl
+	meld = difftool -t meld -y
+	t = log --graph --pretty=format:'%s %Cgreen(%an %cr)%Creset %Cred%d%Creset' --abbrev-commit --date=relative
+	ci = commit -m
+	st = status
+	pr = pull --rebase --stat
+	dt = difftool -y HEAD^1
+	mff = merge --no-ff
+	bm = branch -m
+	po = push -u origin
+	co = checkout
+        
+[branch]
+	autosetuprebase = always
+[push]
+	default = upstream
