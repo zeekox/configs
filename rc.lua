@@ -389,9 +389,8 @@ awful.rules.rules = {
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[1][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[2][2] } },
-	{ rule = { class = "Thunderbird", role="Msgcompose"},
-      properties = { floating = false, tag = tags[1][1] } }
+      properties = { floating = false, tag = tags[2][1] } },
+	{ rule = { class = "Thunderbird", instance = "Msgcompose" }, callback = function(c) awful.client.movetotag(tags[1][awful.tag.getidx()], c) end},
 }
 -- }}}
 
@@ -440,7 +439,7 @@ end
 
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("xautolock -locker 'xlock'");
-awful.util.spawn_with_shell(terminal, 1);
+awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
 
 

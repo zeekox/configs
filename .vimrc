@@ -131,10 +131,14 @@ set mouse=a
 vmap Q gq
 nmap Q gqap
 
-nmap qa :qa!<CR>
+nma qa :qa!<CR>
 nmap qw :w!<CR>
 
 :imap <c-space> <c-n>
 :imap <c-s-space> <c-p>
+
+" fix keys in termital, use 'od -a' to get key send 
+map <ESC>^[[D <C-Left>
+map <ESC>^[[C <C-Right>
 
 "set tags=.tags
