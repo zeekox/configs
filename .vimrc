@@ -141,4 +141,22 @@ nmap qw :w!<CR>
 map <ESC>^[[D <C-Left>
 map <ESC>^[[C <C-Right>
 
-"set tags=.tags
+" tab navigation
+nmap <C-S-tab> :tabprevious<cr>
+nmap <C-tab> :tabnext<cr>
+nmap <C-t> :tabnew<cr>
+map <C-t> :tabnew<cr>
+map <C-S-tab> :tabprevious<cr>
+map <C-tab> :tabnext<cr>
+"map <C-w> :tabclose<cr>
+imap <C-S-tab> <ESC>:tabprevious<cr>i
+imap <C-tab> <ESC>:tabnext<cr>i
+imap <C-t> <ESC>:tabnew<cr>
+
+" use % to jump to end tag
+source $VIMRUNTIME/macros/matchit.vim
+
+let g:closetag_html_style=1 
+
+" close tags
+autocmd Filetype html,xml,xsl,jsp source ~/.vim/plugin/closetag.vim 
