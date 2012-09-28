@@ -325,7 +325,16 @@ for i = 1, keynumber do
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
+        -- change tag on all screens
         awful.key({ modkey, "Control" }, "#" .. i + 9,
+                  function ()
+						for s = 1, screen.count() do
+                        	if tags[s][i] then
+                            	awful.tag.viewonly(tags[s][i])
+                        	end
+                        end
+                  end),
+        awful.key({ modkey, "Mod1" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
