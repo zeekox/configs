@@ -398,7 +398,7 @@ awful.rules.rules = {
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[1][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[2][1] } },
+      properties = { floating = false, tag = tags[screen.count()][1] } },
 	{ rule = { class = "Thunderbird", instance = "Msgcompose" }, callback = function(c) awful.client.movetotag(tags[1][awful.tag.getidx()], c) end},
 }
 -- }}}
