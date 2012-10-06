@@ -1,3 +1,5 @@
+-- AWESOME CONFIG FILE
+
 -- Standard awesome library
 require("awful")
 require("awful.autofocus")
@@ -11,12 +13,37 @@ require("naughty")
 require("debian.menu")
 require("vicious")
 
+-- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.add_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, an error happened!",
+                         text = err })
+        in_error = false
+    end)
+end
+-- }}}
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -45,16 +72,26 @@ layouts =
 }
 -- }}}
 
- -- {{{ Tags
+-- {{{ Tags
+-- Define a tag table which hold all screen tags.
  tags = {
-   names  = { "☭", "⌥", "☼", "⌘"},
-   layout = { layouts[2], layouts[1], layouts[1], layouts[1] }
-}
+   settings = {
+     {
+       names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
+	   layout = { layouts[2], layouts[10], layouts[1], layouts[2]}
+     },
+     { 
+       names  = { "ڞ", "ऄ", "Ԡ", "†"},
+	   layout = { layouts[2], layouts[10], layouts[10], layouts[2]}
+ }}}
  
  for s = 1, screen.count() do
-     tags[s] = awful.tag(tags.names, s, tags.layout)
+     tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
  end
- -- }}}
+--end
+-- }}}
+
+
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -76,6 +113,17 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- }}}
 
 -- {{{ Wibox
+-- Create a textclock widget
+mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m %R ", 60)
+
+-- {{{ Battery state
+baticon = widget({ type = "imagebox" })
+baticon.image = image(beautiful.widget_bat)
+-- Initialize widget
+batwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
+-- }}}
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -124,16 +172,6 @@ mytasklist.buttons = awful.util.table.join(
                                               awful.client.focus.byidx(-1)
                                               if client.focus then client.focus:raise() end
                                           end))
-mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m %R ", 60)
-
--- {{{ Battery state
-baticon = widget({ type = "imagebox" })
-baticon.image = image(beautiful.widget_bat)
--- Initialize widget
-batwidget = widget({ type = "textbox" })
--- Register widget
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT1")
--- }}}
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -188,12 +226,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
-    awful.key({ modkey,           }, "j",
-        function ()
+    --awful.key({ modkey,           }, "j",
+    awful.key({ "Mod1" }, "Tab",
+    function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "k",
+    --awful.key({ modkey,           }, "k",
+    awful.key({ "Mod1", "Shift" }, "Tab",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -239,7 +279,14 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+              
+    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 5%+") end),
+    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 5%-") end),
+    awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
+    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("/home/mcarabotti/bin/firefox.sh") end),
+    awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
+    awful.key({ }, "XF86Search",    function () awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -260,7 +307,8 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+    awful.key({ modkey,  }, "F12",    function () awful.util.spawn_with_shell("xlock -mode blank") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -281,7 +329,16 @@ for i = 1, keynumber do
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
+        -- change tag on all screens
         awful.key({ modkey, "Control" }, "#" .. i + 9,
+                  function ()
+						for s = 1, screen.count() do
+                        	if tags[s][i] then
+                            	awful.tag.viewonly(tags[s][i])
+                        	end
+                        end
+                  end),
+        awful.key({ modkey, "Mod1" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then

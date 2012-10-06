@@ -19,6 +19,8 @@ set export LC_TIME=en_GB
 alias sus="sudo pm-suspend"
 alias bye="sudo shutdown -h now"
 alias vaw="gvim ~/.config/awesome/rc.lua &"
+alias ls="ls --color"
+alias ll="ls -l --color"
 
 # multigit complete
 source ~/bin/git-completion.bash
