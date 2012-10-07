@@ -110,18 +110,47 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 -- }}}
 
--- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m %R ", 60)
 
--- {{{ Battery state
-baticon = widget({ type = "imagebox" })
-baticon.image = image(beautiful.widget_bat)
--- Initialize widget
+clock_tooltip = awful.tooltip({
+	objects = { mytextclock },
+	timer_function = function()
+        local datespec = os.date("*t")
+        datespec = datespec.year * 12 + datespec.month - 1
+        datespec = (datespec % 12 + 1) .. " " .. math.floor(datespec / 12)
+        local cal = awful.util.pread("ncal -A 1 -m " .. datespec .. " -M -b")
+        cal = string.gsub(cal, "^%s*(.-)%s*$", "%1")
+		cal = string.gsub(cal, "_\ _\(%d)", "<b>%1</b>")
+        return string.format('<span font_desc="%s">%s</span>', "monospace", cal .. datespec)
+	end,
+})
+
+-- Battery state
 batwidget = widget({ type = "textbox" })
--- Register widget
 vicious.register(batwidget, vicious.widgets.bat, widget_fun.batclosure(), 31, "BAT1")
--- }}}
+
+-- wifi
+local ssid
+
+netwidget = widget({ type = "textbox" })
+vicious.register(netwidget, vicious.widgets.wifi, 
+function(widget, args)
+	ssid = args["{ssid}"]
+	if ssid == "N/A" then
+		return ""
+	else
+		return "((↑↓))"
+	end
+end
+, 3, "eth1")
+
+net_tooltip = awful.tooltip({
+	objects = { netwidget },
+	timer_function = function()
+						return ssid
+					end,
+})
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -202,7 +231,8 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
-        --batwidget,
+        batwidget,
+        netwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
