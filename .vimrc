@@ -76,6 +76,8 @@ let mapleader=","
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <leader>p "+gP
+vmap <leader>y "+y
 
 " hide buffers
 set hidden
