@@ -9,6 +9,8 @@ require("beautiful")
 -- Notification library
 require("naughty")
 require("vicious")
+require("widget_fun")
+local widget_fun = widget_fun
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -118,7 +120,7 @@ baticon.image = image(beautiful.widget_bat)
 -- Initialize widget
 batwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, widget_fun.batclosure(), 31, "BAT1")
 -- }}}
 
 -- Create a systray
