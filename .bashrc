@@ -21,6 +21,9 @@ alias bye="sudo shutdown -h now"
 alias vaw="gvim ~/.config/awesome/rc.lua &"
 alias ls="ls --color"
 alias ll="ls -l --color"
+alias cdbl="cd ~/workspace/ndbjs-business-layer/"
+alias cd7="cd ~/workspace/ndbjs-re7/"
+alias cd5="cd ~/workspace/ndbjs-re5/"
 
 # multigit complete
 source ~/bin/git-completion.bash
