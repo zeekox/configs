@@ -110,48 +110,6 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 -- }}}
 
--- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m %R ", 60)
-
-clock_tooltip = awful.tooltip({
-	objects = { mytextclock },
-	timer_function = function()
-        local datespec = os.date("*t")
-        datespec = datespec.year * 12 + datespec.month - 1
-        datespec = (datespec % 12 + 1) .. " " .. math.floor(datespec / 12)
-        local cal = awful.util.pread("ncal -A 1 -m " .. datespec .. " -M -b")
-        cal = string.gsub(cal, "^%s*(.-)%s*$", "%1")
-		cal = string.gsub(cal, "_\ _\(%d)", "<b>%1</b>")
-        return string.format('<span font_desc="%s">%s</span>', "monospace", cal .. datespec)
-	end,
-})
-
--- Battery state
-batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, widget_fun.batclosure(), 31, "BAT1")
-
--- wifi
-local ssid
-
-netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.wifi, 
-function(widget, args)
-	ssid = args["{ssid}"]
-	if ssid == "N/A" then
-		return ""
-	else
-		return "((↑↓))"
-	end
-end
-, 3, "eth1")
-
-net_tooltip = awful.tooltip({
-	objects = { netwidget },
-	timer_function = function()
-						return ssid
-					end,
-})
-
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -219,6 +177,8 @@ for s = 1, screen.count() do
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
 
+	require("widgets")
+
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
     -- Add widgets to the wibox - order matters
@@ -230,9 +190,9 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
-        batwidget,
-        netwidget,
+        widgets.mytextclock,
+        widgets.batwidget,
+        widgets.netwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -480,6 +440,7 @@ end
 
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("xautolock -locker 'xlock'");
+awful.util.spawn_with_shell("killall " .. terminal);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
 
