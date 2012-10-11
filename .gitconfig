@@ -23,6 +23,7 @@
 	bm = branch -m
 	po = push -u origin
 	co = checkout
+	aa = add .
         
 [branch]
 	autosetuprebase = always

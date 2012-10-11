@@ -13,7 +13,7 @@ module("widgets")
 mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m %R ", 60)
 
 clock_tooltip = awful.tooltip({
-	objects = { mytextclock },
+	objects = {  },
 	timer_function = function()
         local datespec = os.date("*t")
         datespec = datespec.year * 12 + datespec.month - 1

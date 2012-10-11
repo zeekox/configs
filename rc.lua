@@ -81,7 +81,7 @@ layouts =
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	   layout = { layouts[2], layouts[10], layouts[10], layouts[2]}
+	   layout = { layouts[2], layouts[2], layouts[1], layouts[2]}
  }}}
  
  for s = 1, screen.count() do
@@ -274,7 +274,10 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
     awful.key({ }, "XF86HomePage",    function () awful.util.spawn("/home/mcarabotti/bin/firefox.sh") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
-    awful.key({ }, "XF86Search",    function () awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse") end)
+    awful.key({ }, "XF86Search",    function () 
+    	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
+    	awful.util.spawn("firefox.sh puzzle.ch")
+    end)
 )
 
 clientkeys = awful.util.table.join(
@@ -377,14 +380,16 @@ awful.rules.rules = {
           c:geometry({x = screengeom.x + ((screengeom.width - width) / 2), y = screengeom.y, width = width, height = height })
       end
     },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
+	{ rule = { class = "Firefox", name = "Puzzle ITC - Open Source Software-Entwicklung und System Engineering - Mozilla Firefox" },
+	  properties = { floating = false, tag=tags[2][2] } }, 
+    { rule = { class = "Eclipse" },
+      properties = { floating = false, tag=tags[1][2] } },
+    { rule = { class = "Eclipse", name="      " },
+      properties = { floating = false, tag=tags[2][2] } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
-    { rule = { class = "Eclipse" },
-      properties = { tag = tags[1][2] } },
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = tags[1][4], floating= true } },
     { rule = { class = "Pidgin", role="conversation" },
@@ -440,7 +445,6 @@ end
 
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("xautolock -locker 'xlock'");
-awful.util.spawn_with_shell("killall " .. terminal);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
 

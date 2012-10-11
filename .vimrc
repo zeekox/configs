@@ -70,15 +70,6 @@ let &guicursor = &guicursor . ",a:blinkon0"
 "call pathogen#helptags()
 "call pathogen#runtime_append_all_bundles()
 
-" change the mapleader from \ to ,
-let mapleader=","
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-nmap <leader>p "+gP
-vmap <leader>y "+y
-
 " hide buffers
 set hidden
 
@@ -107,6 +98,9 @@ set noerrorbells         " don't beep
 
 set nobackup
 set noswapfile
+
+" don't warn when modification in invisible buffer
+"set hidden
 
 ":hi LineNr ctermfg=darkgrey ctermbg=black
 
@@ -154,6 +148,16 @@ map <C-tab> :tabnext<cr>
 imap <C-S-tab> <ESC>:tabprevious<cr>i
 imap <C-tab> <ESC>:tabnext<cr>i
 imap <C-t> <ESC>:tabnew<cr>
+
+" change the mapleader from \ to ,
+let mapleader=","
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+map <leader>p "+gP
+vmap <leader>y "+y
+map <leader>f :tabnew <bar> FufFile **/<CR>
 
 " use % to jump to end tag
 source $VIMRUNTIME/macros/matchit.vim
