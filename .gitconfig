@@ -16,6 +16,7 @@
 	meld = difftool -t meld -y
 	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Cred%d%Creset%Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
 	ci = commit -m
+	cii = commit --interactive
 	st = status
 	pr = pull --rebase --stat
 	dt = difftool -y HEAD^1

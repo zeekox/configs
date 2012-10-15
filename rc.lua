@@ -359,6 +359,14 @@ clientbuttons = awful.util.table.join(
 root.keys(globalkeys)
 -- }}}
 
+function center_on_screen(c, height_ratio, width_ratio)
+    local screengeom = screen[mouse.screen].workarea
+    width  = screengeom.width  * width_ratio
+    height = screengeom.height * height_ratio
+    c:geometry({x = screengeom.x + ((screengeom.width - width) / 2), y = screengeom.y, width = width, height = height })
+end
+
+
 -- {{{ Rules
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -373,17 +381,11 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
     { rule = { class = "Firefox", instance = "Navigator" },
       properties = { floating = true }, 
-      callback = function(c)
-          local screengeom = screen[mouse.screen].workarea
-          width  = screengeom.width  * 0.70
-          height = screengeom.height
-          c:geometry({x = screengeom.x + ((screengeom.width - width) / 2), y = screengeom.y, width = width, height = height })
-      end
-    },
+      callback = function(c) center_on_screen(c, 1, 0.70) end },
 	{ rule = { class = "Firefox", name = "Puzzle ITC - Open Source Software-Entwicklung und System Engineering - Mozilla Firefox" },
 	  properties = { floating = false, tag=tags[2][2] } }, 
     { rule = { class = "Eclipse" },
-      properties = { floating = false, tag=tags[1][2] } },
+      properties = { floating = true, tag=tags[1][2] } },
     { rule = { class = "Eclipse", name="      " },
       properties = { floating = false, tag=tags[2][2] } },
     { rule = { class = "gimp" },
@@ -391,12 +393,17 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
     { rule = { class = "Pidgin", role = "buddy_list" },
-      properties = { tag = tags[1][4], floating= true } },
+      properties = { tag = tags[1][4], floating= false, maximized_vertical = true } },
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[1][4] } },
 	{ rule = { class = "Thunderbird"},
       properties = { floating = false, tag = tags[screen.count()][1] } },
-	{ rule = { class = "Thunderbird", instance = "Msgcompose" }, callback = function(c) awful.client.movetotag(tags[1][awful.tag.getidx()], c) end},
+	{ rule = { class = "Thunderbird", instance = "Msgcompose" },
+      properties = { floating = true },
+	  callback = function(c) 
+	  	  center_on_screen(c, 0.5, 0.5)
+	  	  awful.client.movetoscreen(c, 1) 
+	  end},
 }
 -- }}}
 
