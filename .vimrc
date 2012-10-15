@@ -155,9 +155,10 @@ let mapleader=","
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-map <leader>p "+gP
+map <leader>p "+gp
 vmap <leader>y "+y
 map <leader>f :tabnew <bar> FufFile **/<CR>
+map <leader>gf :tabe <cfile><cr>
 
 " use % to jump to end tag
 source $VIMRUNTIME/macros/matchit.vim
