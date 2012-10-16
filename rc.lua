@@ -276,7 +276,6 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
     	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
-    	awful.util.spawn("firefox.sh puzzle.ch")
     end)
 )
 
@@ -385,7 +384,9 @@ awful.rules.rules = {
 	{ rule = { class = "Firefox", name = "Puzzle ITC - Open Source Software-Entwicklung und System Engineering - Mozilla Firefox" },
 	  properties = { floating = false, tag=tags[2][2] } }, 
     { rule = { class = "Eclipse" },
-      properties = { floating = true, tag=tags[1][2] } },
+      properties = { floating = true, tag=tags[1][2],
+      				maximized_vertical   = true,
+                     maximized_horizontal = true } },
     { rule = { class = "Eclipse", name="      " },
       properties = { floating = false, tag=tags[2][2] } },
     { rule = { class = "gimp" },
@@ -404,6 +405,10 @@ awful.rules.rules = {
 	  	  center_on_screen(c, 0.5, 0.5)
 	  	  awful.client.movetoscreen(c, 1) 
 	  end},
+    { rule = { class = "Meld" },
+      properties = { floating = true,
+    				 maximized_vertical   = true,
+                     maximized_horizontal = true } },
 }
 -- }}}
 
