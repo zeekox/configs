@@ -98,6 +98,7 @@ set noerrorbells         " don't beep
 
 set nobackup
 set noswapfile
+set clipboard=unnamedplus
 
 " don't warn when modification in invisible buffer
 "set hidden
@@ -157,7 +158,8 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 map <leader>p "+gp
 vmap <leader>y "+y
-map <leader>f :tabnew <bar> FufFile **/<CR>
+map <leader>f :FufFile **/<CR>
+map <leader>t :tabnew <bar> FufFile **/<CR>
 map <leader>gf :tabe <cfile><cr>
 
 " use % to jump to end tag

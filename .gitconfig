@@ -24,9 +24,13 @@
 	bm = branch -m
 	po = push -u origin
 	co = checkout
-	aa = add .
-        
+	aa = !git add . && git st
+    lp = log -p
+    who = shortlog -s --   
+
 [branch]
 	autosetuprebase = always
 [push]
 	default = upstream
+[credential]
+	helper = gnome-keyring
