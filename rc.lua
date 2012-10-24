@@ -77,11 +77,11 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[10], layouts[1], layouts[2]}
+	   layout = { layouts[2], layouts[10], layouts[2], layouts[2]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	   layout = { layouts[2], layouts[2], layouts[1], layouts[2]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
  }}}
  
  for s = 1, screen.count() do

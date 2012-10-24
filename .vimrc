@@ -165,7 +165,7 @@ map <leader>gf :tabe <cfile><cr>
 " use % to jump to end tag
 source $VIMRUNTIME/macros/matchit.vim
 
-let g:closetag_html_style=1 
-
 " close tags
-autocmd Filetype html,xml,xsl,jsp,js source ~/.vim/plugin/closetag.vim 
+autocmd Filetype html,xml,xsl,jsp,js source ~/.vim/plugin/closetag.vim
+
+call pathogen#infect() 
