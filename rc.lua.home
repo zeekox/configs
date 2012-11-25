@@ -80,11 +80,11 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[10], layouts[1], layouts[2]}
+	   layout = { layouts[2], layouts[1], layouts[1], layouts[2]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	   layout = { layouts[2], layouts[10], layouts[10], layouts[2]}
+	layout = { layouts[2], layouts[1], layouts[1], layouts[2]}
  }}}
  
  for s = 1, screen.count() do
@@ -413,7 +413,7 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    { rule = { class = "Firefox" },
+	  { rule = { class = "Firefox" },
        properties = { floating = false } },
 }
 -- }}}
@@ -448,4 +448,6 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
+--
+--
+awful.util.spawn("google-chrome")
