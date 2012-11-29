@@ -1,5 +1,5 @@
 [user]
-	name = Mauro Carabotti\n
+	name = Mauro Carabotti
 	email = carabotti@puzzle.ch
 [http]
         sslVerify = false
@@ -14,12 +14,13 @@
 [alias]
 	#meld = !/home/mcarabotti/bin/git-meld.pl
 	meld = difftool -t meld -y
-	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Cred%d%Creset%Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Cred%d%Creset%Cgreen(%an %cr)%Creset' --abbrev-commit
 	ci = commit -m
 	cii = commit --interactive
 	st = status
 	pr = pull --rebase --stat
 	dt = difftool -y HEAD^1
+	dtt = difftool -y
 	mff = merge --no-ff
 	bm = branch -m
 	po = push -u origin

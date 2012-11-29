@@ -150,6 +150,9 @@ imap <C-S-tab> <ESC>:tabprevious<cr>i
 imap <C-tab> <ESC>:tabnext<cr>i
 imap <C-t> <ESC>:tabnew<cr>
 
+" to append after closing tag
+" '<,'>s/<\/.\{-}>/&\\/
+
 " change the mapleader from \ to ,
 let mapleader=","
 
@@ -166,6 +169,6 @@ map <leader>gf :tabe <cfile><cr>
 source $VIMRUNTIME/macros/matchit.vim
 
 " close tags
-autocmd Filetype html,xml,xsl,jsp,js source ~/.vim/plugin/closetag.vim
+autocmd Filetype html,xml,xsl,jsp,js,txt source ~/.vim/plugin/closetag.vim
 
 call pathogen#infect() 
