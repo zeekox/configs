@@ -259,7 +259,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey, }, "r",         function () awful.util.spawn('gmrun') end),
+    -- awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -462,8 +463,7 @@ end
 
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("xautolock -locker 'xlock'");
-awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
-
+awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 
 -- }}}
