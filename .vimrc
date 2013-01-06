@@ -169,3 +169,9 @@ source $VIMRUNTIME/macros/matchit.vim
 autocmd Filetype html,xml,xsl,jsp,js source ~/.vim/plugin/closetag.vim
 
 call pathogen#infect() 
+
+" Remove menu bar
+set guioptions-=m
+
+" Remove toolbar
+set guioptions-=T

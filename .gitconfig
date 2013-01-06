@@ -15,7 +15,7 @@
 	#meld = !/home/mcarabotti/bin/git-meld.pl
 	meld = difftool -t meld -y
 	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Cred%d%Creset%Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
-	ci = commit -m
+	ci = commit -v
 	cii = commit --interactive
 	st = status
 	pr = pull --rebase --stat

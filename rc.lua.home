@@ -61,6 +61,7 @@ layouts =
 {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
+    awful.layout.suit.tile.right,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.floating,
@@ -80,11 +81,11 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[1], layouts[1], layouts[2]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	layout = { layouts[2], layouts[1], layouts[1], layouts[2]}
+	layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
  }}}
  
  for s = 1, screen.count() do
@@ -413,8 +414,13 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-	  { rule = { class = "Firefox" },
-       properties = { floating = false } },
+	{ rule = { class = "Chromium-browser" },
+       properties = { floating = false , tag = tags[1][3] } },
+	{ rule = { class = "Transmission-gtk" },
+       properties = { floating = false , tag = tags[1][4] } },
+	{ rule = { class = "Thunar", name="File Operation Progres" },
+       properties = { floating = true } },
+
 }
 -- }}}
 
@@ -450,4 +456,6 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 --
 --
-awful.util.spawn("google-chrome")
+awful.util.spawn_with_shell(terminal);
+awful.util.spawn_with_shell("chromium-browser");
+awful.util.spawn("xfce4-volumed");
