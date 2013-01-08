@@ -259,7 +259,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.util.spawn("gmrun") end),
+    awful.key({ modkey, }, "r",         function () awful.util.spawn('gmrun') end),
+    -- awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -272,7 +273,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 5%+") end),
     awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 5%-") end),
     awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
-    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("/home/mcarabotti/bin/firefox.sh") end),
+    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("google-chrome") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
     	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
@@ -381,6 +382,9 @@ awful.rules.rules = {
     { rule = { class = "Firefox", instance = "Navigator" },
       properties = { floating = true }, 
       callback = function(c) center_on_screen(c, 1, 0.70) end },
+    { rule = { class = "Google-chrome" },
+      properties = { floating = true }, 
+      callback = function(c) center_on_screen(c, 1, 0.70) end },
 	{ rule = { class = "Firefox", name = "Puzzle ITC - Open Source Software-Entwicklung und System Engineering - Mozilla Firefox" },
 	  properties = { floating = false, tag=tags[2][2] } }, 
     { rule = { class = "Eclipse", Instance="Eclispe" },
@@ -459,8 +463,7 @@ end
 
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("xautolock -locker 'xlock'");
-awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
-
+awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 
 -- }}}

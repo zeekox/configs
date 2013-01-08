@@ -1,5 +1,5 @@
 [user]
-	name = Mauro Carabotti\n
+	name = Mauro Carabotti
 	email = carabotti@puzzle.ch
 [http]
         sslVerify = false
@@ -9,6 +9,7 @@
 [core]
 	excludesfile = /home/mcarabotti/.gitignore_global
 	editor = vim
+	#pager = more
 [diff]
 	#external = /home/mcarabotti/bin/git_diff.py
 [alias]
@@ -22,6 +23,7 @@
 	s = status -s
 	pr = pull --rebase --stat
 	dt = difftool -y HEAD^1
+	dtt = difftool -y
 	mff = merge --no-ff
 	bm = branch -m
 	po = push -u origin
@@ -29,6 +31,7 @@
 	aa = !git add . && git st
     lp = log -p
     who = shortlog -s --   
+	wc = whatchanged
 
 [branch]
 	autosetuprebase = always
