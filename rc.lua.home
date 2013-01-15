@@ -420,7 +420,8 @@ awful.rules.rules = {
        properties = { floating = false , tag = tags[1][4] } },
 	{ rule = { class = "Thunar", name="File Operation Progres" },
        properties = { floating = true } },
-
+	{ rule = { class = "Exe"},
+       properties = { floating = true } },
 }
 -- }}}
 
@@ -458,4 +459,4 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 --
 awful.util.spawn_with_shell(terminal);
 awful.util.spawn_with_shell("chromium-browser");
-awful.util.spawn("xfce4-volumed");
+--awful.util.spawn("xfce4-volumed");
