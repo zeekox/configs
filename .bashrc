@@ -16,6 +16,9 @@ PS1='\[\033]0; \w`__git_ps1`\007\]\[\e[0;32m\]\[\e[m\]\[\e[1;34m\]\w\[\033[0;31m
 set export EDITOR=vim
 set export LC_TIME=en_GB
 
+export BROWSER="chromium-browser"
+export TERMCMD="urxvtc"
+
 set PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 alias sus="sudo pm-suspend"
