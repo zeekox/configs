@@ -1,12 +1,13 @@
 [user]
 	name = Mauro Carabotti
-	email = zeekox@gmail.com
+	email = carabotti@puzzle.ch
 [http]
         sslVerify = false
         postBuffer = 524288000
 [color]
         ui = true
 [core]
+	excludesfile = /home/mcarabotti/.gitignore_global
 	editor = vim
 	#pager = more
 [diff]
@@ -37,4 +38,4 @@
 [push]
 	default = upstream
 [credential]
-	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /home/zeekox/bin/git-credential-gnome-keyring
