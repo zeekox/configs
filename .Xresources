@@ -36,7 +36,7 @@ URxvt*urgentOnBell:       true
 URxvt*perl-lib:        /home/mcarabotti/.urxvt
 !URxvt*perl-ext-common: default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard
 URxvt*perl-ext-common: default,matcher,keyboard-select,url-select,clipboard
-URxvt*urlLauncher:     /usr/bin/firefox
+URxvt*urlLauncher:     /usr/bin/google-chrome
 URxvt*matcher.button:  1
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
@@ -174,7 +174,7 @@ Xman*directoryFontNormal: xft:Monospace:pixelsize=13
 !{{{ XPDF
 xpdf*foreground:     black
 xpdf*background:     white
-xpdf*urlCommand:     /usr/local/bin/firefox %s
+xpdf*urlCommand:     /usr/local/bin/google-chrome %s
 xpdf*antialias:      yes
 xpdf*enableFreetype: yes
 !}}}
@@ -317,4 +317,32 @@ xfontsel.pane.fieldBox.MenuButton.borderWidth:   1
 xfontsel.pane.fieldBox.MenuButton.internalHeight:1
 xfontsel.pane.fieldBox.MenuButton.internalWidth: 2
 xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
+!}}}
+
+!{{{ Xscreensaver
+xscreensaver.splash: false
+xscreensaver.mode: blank
+
+!font settings
+xscreensaver*Font:               -*-nimbus sans l-bold-r-normal-*-10-*-*-*-*-*-*-* 
+
+!general dialog box
+xscreensaver*foreground:         #dcdccc
+xscreensaver*background:         #3f3f3f
+
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+
+!username/password input box and date text colour
+!xscreensaver.Dialog.text.foreground:    #2040e0
+xscreensaver.Dialog.internalBorderWidth:0
+xscreensaver.Dialog.borderWidth:        0
+xscreensaver.Dialog.shadowThickness:    2
+
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #506070
+xscreensaver.passwd.thermometer.width:       5
+
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %H :%M%p - %a %b %d, %Y
 !}}}

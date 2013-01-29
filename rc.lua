@@ -42,7 +42,7 @@ end
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt256c"
+terminal = "urxvtc"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -273,7 +273,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("amixer set Master 5%+") end),
     awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("amixer set Master 5%-") end),
     awful.key({ }, "XF86AudioMute",    function () awful.util.spawn("amixer set Master toggle") end),
-    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("google-chrome") end),
+    awful.key({ }, "XF86HomePage",    function () awful.util.spawn("chromium-browser") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
     	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
@@ -299,7 +299,7 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ modkey,  }, "F12",    function () awful.util.spawn_with_shell("xlock -mode blank") end)
+    awful.key({ modkey,  }, "F2",    function () awful.util.spawn_with_shell("xscreensaver-command -l") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -382,7 +382,7 @@ awful.rules.rules = {
     { rule = { class = "Firefox", instance = "Navigator" },
       properties = { floating = true }, 
       callback = function(c) center_on_screen(c, 1, 0.70) end },
-    { rule = { class = "Google-chrome" },
+    { rule = { class = "Chromium-browser" },
       properties = { floating = true }, 
       callback = function(c) center_on_screen(c, 1, 0.70) end },
 	{ rule = { class = "Firefox", name = "Puzzle ITC - Open Source Software-Entwicklung und System Engineering - Mozilla Firefox" },
@@ -462,7 +462,9 @@ if autorun then
 end
 
 awful.util.spawn_with_shell("wmname LG3D");
-awful.util.spawn_with_shell("xautolock -locker 'xlock'");
+awful.util.spawn_with_shell("gnome-settings-daemon");
+awful.util.spawn_with_shell("xscreensaver");
+awful.util.spawn_with_shell("urxvtd");
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
 awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 
