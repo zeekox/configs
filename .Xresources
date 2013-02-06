@@ -322,6 +322,8 @@ xfontsel.pane.fieldBox.MenuButton.shapeStyle:    rectangle
 !{{{ Xscreensaver
 xscreensaver.splash: false
 xscreensaver.mode: blank
+xscreensaver.lock: true
+xscreensaver.timeout: 10
 
 !font settings
 xscreensaver*Font:               -*-nimbus sans l-bold-r-normal-*-10-*-*-*-*-*-*-* 
@@ -344,5 +346,5 @@ xscreensaver.passwd.thermometer.foreground:  #506070
 xscreensaver.passwd.thermometer.width:       5
 
 !datestamp format--see the strftime(3) manual page for details
-xscreensaver.dateFormat:    %H :%M%p - %a %b %d, %Y
+xscreensaver.dateFormat:    %H:%M %a %d %b %Y
 !}}}

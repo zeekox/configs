@@ -385,8 +385,6 @@ awful.rules.rules = {
     { rule = { class = "Chromium-browser" },
       properties = { floating = true }, 
       callback = function(c) center_on_screen(c, 1, 0.70) end },
-	{ rule = { class = "Firefox", name = "Puzzle ITC - Open Source Software-Entwicklung und System Engineering - Mozilla Firefox" },
-	  properties = { floating = false, tag=tags[2][2] } }, 
     { rule = { class = "Eclipse", Instance="Eclispe" },
       properties = { floating = true, tag=tags[1][2],
       				maximized_vertical   = true,
@@ -394,7 +392,7 @@ awful.rules.rules = {
     { rule = { class = "Eclipse" },
       properties = { floating = true, tag=tags[1][2] } },
     { rule = { class = "Eclipse", name="      " },
-      properties = { floating = false, tag=tags[2][2] } },
+      properties = { floating = false, tag=tags[screen.count()][2] } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
@@ -465,7 +463,5 @@ awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("xscreensaver");
 awful.util.spawn_with_shell("urxvtd");
-awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-business-layer/", 1);
-awful.util.spawn_with_shell(terminal .. " -cd ~/workspace/ndbjs-re7/", 1);
 
 -- }}}
