@@ -119,8 +119,6 @@ endif
 "set list
 "set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-autocmd filetype html,xml set listchars-=tab:>.
-
 set pastetoggle=<F2>
 
 set mouse=a
@@ -170,8 +168,11 @@ map <leader>f mzgg=G`z<CR>
 " use % to jump to end tag
 source $VIMRUNTIME/macros/matchit.vim
 
+" AUTO COMMANDS ----------------------------------------------------------
+autocmd filetype html,xml set listchars-=tab:>.
 " close tags
 autocmd Filetype html,xml,xsl,jsp,js,txt source ~/.vim/plugin/closetag.vim
+au FileType gitcommit set tw=200
 
 "call pathogen#infect() 
 

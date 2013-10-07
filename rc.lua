@@ -413,6 +413,10 @@ awful.rules.rules = {
       properties = { floating = true,
     				 maximized_vertical   = true,
                      maximized_horizontal = true } },
+    { rule = { class = "Gitg" },
+      properties = { floating = true,
+    				 maximized_vertical   = true,
+                     maximized_horizontal = true } },
 }
 -- }}}
 
@@ -463,5 +467,6 @@ awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("xscreensaver");
 awful.util.spawn_with_shell("urxvtd");
-
+awful.util.spawn_with_shell(terminal, 1);
+awful.util.spawn_with_shell(terminal, 1);
 -- }}}
