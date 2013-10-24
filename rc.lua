@@ -385,6 +385,9 @@ awful.rules.rules = {
     { rule = { class = "Chromium-browser" },
       properties = { floating = true }, 
       callback = function(c) center_on_screen(c, 1, 0.70) end },
+    { rule = { class = "Gvim" },
+      properties = { floating = true }, 
+      callback = function(c) center_on_screen(c, 1, 0.70) end },
     { rule = { class = "Eclipse", Instance="Eclispe" },
       properties = { floating = true, tag=tags[1][2],
       				maximized_vertical   = true,
@@ -398,11 +401,11 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
     { rule = { class = "Pidgin", role = "buddy_list" },
-      properties = { tag = tags[1][4], floating= false, maximized_vertical = true } },
+      properties = { tag = tags[screen.count()][4], floating= false, maximized_vertical = true } },
     { rule = { class = "Pidgin", role="conversation" },
-      properties = { tag = tags[1][4] } },
+      properties = { tag = tags[screen.count()][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[screen.count()][1] } },
+      properties = { floating = false, tag = tags[1][1] } },
 	{ rule = { class = "Thunderbird", instance = "Msgcompose" },
       properties = { floating = true },
 	  callback = function(c) 
@@ -417,6 +420,8 @@ awful.rules.rules = {
       properties = { floating = true,
     				 maximized_vertical   = true,
                      maximized_horizontal = true } },
+    { rule = { class = "nvidia-settings" },
+      properties = { floating = true } },
 }
 -- }}}
 
@@ -463,6 +468,9 @@ if autorun then
    end
 end
 
+-- Change Theme 2 times so that thunderbird get it...
+awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'");
+awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("xscreensaver");
