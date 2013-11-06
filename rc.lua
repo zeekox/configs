@@ -80,7 +80,7 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[10], layouts[2], layouts[2]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
@@ -396,9 +396,9 @@ awful.rules.rules = {
       				maximized_vertical   = true,
                      maximized_horizontal = true } },
     { rule = { class = "Eclipse" },
-      properties = { floating = true, tag=tags[1][2] } },
+      properties = { floating = true, tag=tags[screen.count()][2] } },
     { rule = { class = "Eclipse", name="      " },
-      properties = { floating = false, tag=tags[screen.count()][2] } },
+      properties = { floating = false, tag=tags[1][2] } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
