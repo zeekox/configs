@@ -46,6 +46,9 @@ terminal = "urxvtc"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
+-- always on external
+naughty.config.screen = screen.count()
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -193,7 +196,7 @@ for s = 1, screen.count() do
         widgets.mytextclock,
         widgets.batwidget,
         widgets.netwidget,
-        s == 1 and mysystray or nil,
+        s == screen.count() and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
@@ -410,7 +413,7 @@ awful.rules.rules = {
       properties = { floating = true },
 	  callback = function(c) 
 	  	  center_on_screen(c, 0.5, 0.5)
-	  	  awful.client.movetoscreen(c, 1) 
+	  	  awful.client.movetoscreen(c, screen.count()) 
 	  end},
     { rule = { class = "Meld" },
       properties = { floating = true,
@@ -470,11 +473,10 @@ end
 
 -- Change Theme 2 times so that thunderbird get it...
 awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'");
-awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("xscreensaver");
 awful.util.spawn_with_shell("urxvtd");
-awful.util.spawn_with_shell(terminal, 1);
-awful.util.spawn_with_shell(terminal, 1);
+awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
+-- awful.util.spawn_with_shell(terminal, 1);
 -- }}}
