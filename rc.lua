@@ -397,16 +397,18 @@ awful.rules.rules = {
                      maximized_horizontal = true } },
     { rule = { class = "Eclipse" },
       properties = { floating = true, tag=tags[screen.count()][2] } },
-    { rule = { class = "Eclipse", name="      " },
+     {rule = { class = "Eclipse", name="      " },
       properties = { floating = false, tag=tags[1][2] } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
     { rule = { class = "Pidgin", role = "buddy_list" },
-      properties = { tag = tags[screen.count()][4], floating= false, maximized_vertical = true } },
+      properties = { tag = tags[screen.count()][4], floating = false, maximized_vertical = true } },
     { rule = { class = "Pidgin", role="conversation" },
       properties = { tag = tags[screen.count()][4] } },
+    { rule = { class = "Twinkle"},
+      properties = { floating = true, tag = tags[screen.count()][4] } },
 	{ rule = { class = "Thunderbird"},
       properties = { floating = false, tag = tags[1][1] } },
 	{ rule = { class = "Thunderbird", instance = "Msgcompose" },
@@ -477,6 +479,7 @@ awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("xscreensaver");
 awful.util.spawn_with_shell("urxvtd");
+awful.util.spawn_with_shell("nm-applet");
 awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
 -- awful.util.spawn_with_shell(terminal, 1);
 -- }}}
