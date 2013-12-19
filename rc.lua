@@ -417,6 +417,8 @@ awful.rules.rules = {
 	  	  center_on_screen(c, 0.5, 0.5)
 	  	  awful.client.movetoscreen(c, screen.count()) 
 	  end},
+	{ rule = { class = "Thunderbird", instance = "Dialog" },
+      properties = { floating = true } },
     { rule = { class = "Meld" },
       properties = { floating = true,
     				 maximized_vertical   = true,
