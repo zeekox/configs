@@ -14,6 +14,7 @@ PS1='\[\033]0; \w`__git_ps1`\007\]\[\e[0;32m\]\[\e[m\]\[\e[1;34m\]\w\[\033[0;31m
 # User specific aliases and functions
 
 set export EDITOR=vim
+export EDITOR=vim
 set export LC_TIME=en_GB
 
 export BROWSER="chromium-browser"

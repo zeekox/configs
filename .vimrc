@@ -74,8 +74,8 @@ let &guicursor = &guicursor . ",a:blinkon0"
 set hidden
 
 set wrap        " don't wrap lines
-set tabstop=4     " a tab is X spaces
-set shiftwidth=4  " number of spaces to use for autoindenting
+set tabstop=2     " a tab is X spaces
+set shiftwidth=2  " number of spaces to use for autoindenting
 set noexpandtab
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
@@ -85,7 +85,7 @@ set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase, case-sensitive otherwise
-set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+"set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set hlsearch      "highlight search terms
 set incsearch     "show search matches as you type
 
@@ -148,7 +148,7 @@ map <C-tab> :tabnext<cr>
 "map <C-w> :tabclose<cr>
 imap <C-S-tab> <ESC>:tabprevious<cr>i
 imap <C-tab> <ESC>:tabnext<cr>i
-imap <C-t> <ESC>:tabnew<cr>
+nmap <C-t> <ESC>:tabnew<cr>
 
 " to append after closing tag
 " '<,'>s/<\/.\{-}>/&\\/
@@ -159,11 +159,13 @@ let mapleader=","
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-map <leader>p "+gp
+nmap <silent> <leader>w :w<CR>
+map <leader>p :pu<CR>
 vmap <leader>y "+y
-map <leader>f :FufFile **/<CR>
+map <leader>e :FufFile **/<CR>
 map <leader>t :tabnew <bar> FufFile **/<CR>
 map <leader>gf :tabe <cfile><cr>
+map <leader>f mzgg=G`z<CR>
 
 " use % to jump to end tag
 source $VIMRUNTIME/macros/matchit.vim
@@ -171,10 +173,17 @@ source $VIMRUNTIME/macros/matchit.vim
 " close tags
 autocmd Filetype html,xml,xsl,jsp,js,txt source ~/.vim/plugin/closetag.vim
 
-call pathogen#infect() 
+"call pathogen#infect() 
 
 " Remove menu bar
 set guioptions-=m
 
 " Remove toolbar
 set guioptions-=T
+
+" js
+let g:JSHintHighlightErrorLine = 0
+
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=3 sw=3 sts=0 noexpandtab

@@ -1,13 +1,12 @@
 [user]
 	name = Mauro Carabotti
-	email = carabotti@puzzle.ch
+	email = zeekox@gmail.com
 [http]
         sslVerify = false
         postBuffer = 524288000
 [color]
         ui = true
 [core]
-	excludesfile = /home/mcarabotti/.gitignore_global
 	editor = vim
 	#pager = more
 [diff]
@@ -28,7 +27,7 @@
 	bm = branch -m
 	po = push -u origin
 	co = checkout
-	aa = !git add . && git st
+	aa = !git add . && git s
     lp = log -p
     who = shortlog -s --   
 	wc = whatchanged
