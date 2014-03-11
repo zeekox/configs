@@ -466,7 +466,8 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 autorun = true
 autorunApps = 
 {
-	"hipchat"
+	"hipchat",
+	"vmware-user"
 }
 if autorun then
    for app = 1, #autorunApps do

@@ -8,6 +8,7 @@ ln -s $DIR/.vim
 ln -s $DIR/.vimrc
 ln -s $DIR/.Xresources
 ln -s $DIR/.gitconfig
+ln -s $DIR/.gtkrc-2.0
 xrdb .Xresources
 cd .config
 mkdir awesome

@@ -5,15 +5,4 @@
 #include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
 
 #To set the icon theme
-#gtk-theme-name = "Atolm-gtk3"
-gtk-theme-name = "Adwaita-Dark"
-
-gtk-icon-theme-name = "Fedora"
-gtk-toolbar-style   = GTK_TOOLBAR_ICONS
-
-#style "font"
-#{
-#font_name = "Monospace 9"
-#}
-#widget_class "*" style "font"
-#gtk-font-name = "Monospace 9" 
+gtk-theme-name = "DeLorean-Dark-3.10_ALPHA"
