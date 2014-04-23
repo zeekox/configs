@@ -80,12 +80,17 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+       layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
- }}}
+       layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+     },
+     {
+       names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
+       layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+     }
+}}
  
  for s = 1, screen.count() do
      tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
@@ -180,7 +185,7 @@ for s = 1, screen.count() do
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
 
-	require("widgets")
+    require("widgets")
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
@@ -279,7 +284,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86HomePage",    function () awful.util.spawn("chromium-browser") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
-    	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
+       awful.util.spawn("eclipse-neo-trunk-launcher.sh")
     end)
 )
 
