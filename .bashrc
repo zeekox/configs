@@ -8,6 +8,7 @@ fi
 PATH=$PATH:$HOME/bin
 
 # Color prompt
+source /etc/bash_completion.d/git-prompt
 # first part till second \w for window title
 PS1='\[\033]0; \w`__git_ps1`\007\]\[\e[0;32m\]\[\e[m\]\[\e[1;34m\]\w\[\033[0;31m\]`__git_ps1`\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 
@@ -32,7 +33,5 @@ alias cd7="cd ~/workspace/ndbjs-re7/"
 alias cd5="cd ~/workspace/ndbjs-re5/"
 alias mp="mplayer -fs"
 
-# multigit complete
-source ~/bin/git-completion.bash
-
-__git_complete mg __git_main
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

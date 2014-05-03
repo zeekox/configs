@@ -37,4 +37,4 @@
 [push]
 	default = upstream
 [credential]
-	helper = /home/mcarabotti/bin/git-1.8.1/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /home/zeekox/bin/git-credential-gnome-keyring
