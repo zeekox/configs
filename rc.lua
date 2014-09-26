@@ -284,7 +284,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86HomePage",    function () awful.util.spawn("chromium-browser") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
-       awful.util.spawn("eclipse-neo-trunk-launcher.sh")
+       awful.util.spawn("eclipse-neo-launcher-git.sh")
     end)
 )
 
@@ -406,11 +406,15 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
     { rule = { class = "HipChat" },
-      properties = { tag = tags[screen.count()][4], floating = false, maximized_vertical = true } },
+      properties = { tag = tags[math.min(2,screen.count())][4], floating = false, maximized_vertical = true } },
 	{ rule = { class = "Pidgin", role = "buddy_list" },
-      properties = { tag = tags[screen.count()][4], floating = false, maximized_vertical = true } },
+      properties = { tag = tags[math.min(2,screen.count())][4], floating = false, maximized_vertical = true } },
     { rule = { class = "Pidgin", role="conversation" },
-      properties = { tag = tags[screen.count()][4] } },
+      properties = { floating = true },
+	  callback = function(c) 
+	  	  center_on_screen(c, 0.5, 0.5)
+	  	  awful.client.movetoscreen(c, screen.count()) 
+	  end},
     { rule = { class = "Twinkle"},
       properties = { floating = true, tag = tags[screen.count()][4] } },
 	{ rule = { class = "Thunderbird"},
@@ -471,6 +475,7 @@ autorun = true
 autorunApps = 
 {
 	"hipchat",
+	"pidgin",
 	"vmware-user"
 }
 if autorun then
