@@ -146,7 +146,7 @@ map <C-tab> :tabnext<cr>
 "map <C-w> :tabclose<cr>
 imap <C-S-tab> <ESC>:tabprevious<cr>i
 imap <C-tab> <ESC>:tabnext<cr>i
-nmap <C-t> <ESC>:tabnew<cr>
+imap <C-t> <ESC>:tabnew<cr>
 
 " to append after closing tag
 " '<,'>s/<\/.\{-}>/&\\/
@@ -174,7 +174,7 @@ autocmd filetype html,xml set listchars-=tab:>.
 autocmd Filetype html,xml,xsl,jsp,js,txt source ~/.vim/plugin/closetag.vim
 au FileType gitcommit set tw=200
 
-"call pathogen#infect() 
+call pathogen#infect() 
 
 " Remove menu bar
 set guioptions-=m

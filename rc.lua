@@ -80,11 +80,11 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-       layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-       layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
      },
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
@@ -185,7 +185,7 @@ for s = 1, screen.count() do
                                               return awful.widget.tasklist.label.currenttags(c, s)
                                           end, mytasklist.buttons)
 
-    require("widgets")
+	require("widgets")
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
@@ -284,7 +284,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86HomePage",    function () awful.util.spawn("chromium-browser") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
-       awful.util.spawn("eclipse-neo-launcher-git.sh")
+    	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
     end)
 )
 
@@ -397,17 +397,19 @@ awful.rules.rules = {
     { rule = { class = "Gvim" },
       properties = { floating = true }, 
       callback = function(c) center_on_screen(c, 1, 0.70) end },
+    { rule = { class = "Eclipse", Instance="Eclispe" },
+      properties = { floating = true, tag=tags[1][2],
+      				maximized_vertical   = true,
+                     maximized_horizontal = true } },
     { rule = { class = "Eclipse" },
 	properties = { floating = true, tag=tags[screen.count()][1] } },
-     {rule = { class = "Eclipse", name="" },
+     {rule = { class = "Eclipse", name="      " },
       properties = { floating = true, tag=tags[1][1] } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
-    { rule = { class = "HipChat" },
-      properties = { tag = tags[screen.count()][4], floating = false, maximized_vertical = true } },
-	{ rule = { class = "Pidgin", role = "buddy_list" },
+    { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = tags[screen.count()][4], floating = false, maximized_vertical = true } },
     { rule = { class = "Pidgin", role="conversation" },
       properties = { floating = true },
@@ -473,10 +475,9 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- Autorun programs
 autorun = true
 autorunApps = 
-{
-	"hipchat",
-	"pidgin",
-	"vmware-user"
+{ 
+   "pidgin",
+   "thunderbird"
 }
 if autorun then
    for app = 1, #autorunApps do
@@ -484,7 +485,14 @@ if autorun then
    end
 end
 
+-- Change Theme 2 times so that thunderbird get it...
 awful.util.spawn_with_shell("urxvtd");
+awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita' && sleep 1");
+awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
+awful.util.spawn_with_shell("xscreensaver");
+awful.util.spawn_with_shell("killall nm-applet && sleep 1");
+awful.util.spawn_with_shell("nm-applet");
+awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
 -- awful.util.spawn_with_shell(terminal, 1);
 -- }}}
