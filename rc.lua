@@ -484,13 +484,7 @@ if autorun then
    end
 end
 
--- Change Theme 2 times so that thunderbird get it...
 awful.util.spawn_with_shell("urxvtd");
-awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita' && sleep 1");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
-awful.util.spawn_with_shell("killall nm-applet && sleep 1");
-awful.util.spawn_with_shell("nm-applet");
-awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
--- awful.util.spawn_with_shell(terminal, 1);
 -- }}}
