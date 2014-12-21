@@ -37,4 +37,4 @@
 [push]
 	default = upstream
 [credential]
-	helper = /home/zeekox/bin/git-credential-gnome-keyring
+	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
