@@ -472,19 +472,8 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Autorun programs
-autorun = true
-autorunApps = 
-{ 
-   "pidgin",
-   "thunderbird"
-}
-if autorun then
-   for app = 1, #autorunApps do
-       awful.util.spawn(autorunApps[app])
-   end
-end
-
 awful.util.spawn_with_shell("urxvtd");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
--- }}}
+awful.util.spawn_with_shell("pidgin");
+awful.util.spawn_with_shell("thunderbird");
