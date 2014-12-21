@@ -306,8 +306,7 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end),
-    awful.key({ modkey,  }, "F2",    function () awful.util.spawn_with_shell("xscreensaver-command -l") end)
+        end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -490,7 +489,6 @@ awful.util.spawn_with_shell("urxvtd");
 awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita' && sleep 1");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
-awful.util.spawn_with_shell("xscreensaver");
 awful.util.spawn_with_shell("killall nm-applet && sleep 1");
 awful.util.spawn_with_shell("nm-applet");
 awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
