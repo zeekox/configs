@@ -63,3 +63,4 @@ else
 fi
 
 alias -g gp='| grep -i'
+alias -s sh=vim
