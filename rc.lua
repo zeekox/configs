@@ -476,3 +476,4 @@ awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("pidgin");
 awful.util.spawn_with_shell("thunderbird");
 awful.util.spawn_with_shell("gnome-screensaver");
+awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");

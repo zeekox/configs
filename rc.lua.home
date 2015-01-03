@@ -339,7 +339,7 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ modkey,  }, "F12",    function () awful.util.spawn_with_shell("xlock -mode blank") end)
+    awful.key({ modkey,  }, "F2",    function () awful.util.spawn_with_shell("gnome-screensaver-command --lock") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -414,7 +414,8 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                   	 size_hints_honor = false} },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
@@ -460,5 +461,6 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 --
 --
-
 awful.util.spawn_with_shell("chromium-browser");
+awful.util.spawn_with_shell("gnome-screensaver");
+awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");

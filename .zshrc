@@ -63,4 +63,6 @@ else
 fi
 
 alias -g gp='| grep -i'
-alias -s sh=vim
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
