@@ -1,38 +1,38 @@
 [user]
-	name = Mauro Carabotti
-	email = zeekox@gmail.com
+  name = Mauro Carabotti
+  email = zeekox@gmail.com
 [http]
-        sslVerify = false
-        postBuffer = 524288000
+  sslVerify = false
+  postBuffer = 524288000
 [color]
-        ui = true
+  ui = true
 [core]
-	editor = vim
-	#pager = more
+  editor = vim
+        #pager = more
 [diff]
-	#external = /home/mcarabotti/bin/git_diff.py
+        #external = /home/mcarabotti/bin/git_diff.py
 [alias]
-	#meld = !/home/mcarabotti/bin/git-meld.pl
-	meld = difftool -t meld -y
-	t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
-	tc = log --graph --pretty=format:'%Cblue%h%Creset %Creset%Cred%d' --abbrev-commit
-	th = !git t | head
-	ci = commit -v
-	st = status
-	s = status -s
-	pr = pull --rebase --stat
-	dt = difftool -y HEAD^1
-	dtt = difftool -y
-	mff = merge --no-ff
-	bm = branch -m
-	po = push -u origin
-	co = checkout
-	aa = !git add . && git s
-    lp = log -p
-    who = shortlog -s --   
-	wc = whatchanged
+        #meld = !/home/mcarabotti/bin/git-meld.pl
+  meld = difftool -t meld -y
+  t = log --graph --pretty=format:'%Cblue%h%Creset %s %Creset%Cgreen(%an %cr)%Creset%Cred%d' --abbrev-commit
+  tc = log --graph --pretty=format:'%Cblue%h%Creset %Creset%Cred%d' --abbrev-commit
+  th = !git t | head
+  ci = commit -v
+  st = status
+  s = status -s
+  pr = pull --rebase --stat
+  dt = difftool -y HEAD^1
+  dtt = difftool -y
+  mff = merge --no-ff
+  bm = branch -m
+  po = push -u origin
+  co = checkout
+  aa = !git add . && git s
+  lp = log -p --full-diff
+  who = shortlog -s --   
+  wc = whatchanged
 
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [push]
-	default = upstream
+  default = upstream

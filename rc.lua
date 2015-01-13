@@ -80,15 +80,15 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+	   layout = { layouts[2], layouts[6], layouts[2], layouts[6]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	   layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+	   layout = { layouts[2], layouts[6], layouts[2], layouts[6]}
      },
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-       layout = { layouts[2], layouts[2], layouts[2], layouts[2]}
+       layout = { layouts[2], layouts[6], layouts[2], layouts[6]}
      }
 }}
  
@@ -284,7 +284,7 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86HomePage",    function () awful.util.spawn("chromium-browser") end),
     awful.key({ }, "XF86Mail",    function () awful.util.spawn("thunderbird") end),
     awful.key({ }, "XF86Search",    function () 
-    	awful.util.spawn("/home/mcarabotti/bin/eclipse/eclipse")
+    	awful.util.spawn("/home/mcarabotti/bin/eclipse_ilw/eclipse")
     end)
 )
 
@@ -307,7 +307,7 @@ clientkeys = awful.util.table.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
         end),
-    awful.key({ modkey,  }, "F2",    function () awful.util.spawn_with_shell("xscreensaver-command -l") end)
+    awful.key({ modkey,  }, "F2",    function () awful.util.spawn_with_shell("gnome-screensaver-command -l") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -383,6 +383,7 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
+                     size_hints_honor = false,
                      -- never open maximized (for firefox, thunderbird)
                      maximized_vertical   = false,
                      maximized_horizontal = false,
@@ -402,17 +403,24 @@ awful.rules.rules = {
 	properties = { floating = true, tag=tags[screen.count()][1] } },
      {rule = { class = "Eclipse", name="      " },
       properties = { floating = true, tag=tags[1][1] } },
+    { rule = { class = "Evince" },
+      properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       callback = awful.titlebar.add  },
+    { rule = { class = "Empathy" },
+      properties = { tag = tags[screen.count()][4] },
+	  callback = function(c) 
+            awful.client.movetotag(tags[screen.count()][4], c)
+	  end},
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = tags[screen.count()][4], floating = false, maximized_vertical = true } },
     { rule = { class = "Pidgin", role="conversation" },
-      properties = { floating = true },
+      properties = { floating = false },
 	  callback = function(c) 
-	  	  center_on_screen(c, 0.5, 0.5)
-	  	  awful.client.movetoscreen(c, screen.count()) 
+            center_on_screen(c, 0.5, 0.5)
+            awful.client.movetoscreen(c, screen.count()) 
 	  end},
     { rule = { class = "Twinkle"},
       properties = { floating = true, tag = tags[screen.count()][4] } },
@@ -477,3 +485,4 @@ awful.util.spawn_with_shell("pidgin");
 awful.util.spawn_with_shell("thunderbird");
 awful.util.spawn_with_shell("gnome-screensaver");
 awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
+awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita';sleep 1;gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");

@@ -62,7 +62,10 @@ else
 	export EDITOR='vim'
 fi
 
+alias fn='find -name'
 alias -g gp='| grep -i'
+alias -g xgp='| xargs grep -i'
+alias -s pdf=evince
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
