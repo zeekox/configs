@@ -66,6 +66,9 @@ alias fn='find -name'
 alias -g gp='| grep -i'
 alias -g xgp='| xargs grep -i'
 alias -s pdf=evince
+alias chromium-browser='chromium-browser -password-store=gnome'
+alias cdi='cd ~/ws/ilw'
+alias gitup='git stash; git pull; git stash pop'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

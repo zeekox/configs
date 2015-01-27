@@ -481,8 +481,8 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 awful.util.spawn_with_shell("urxvtd");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
-awful.util.spawn_with_shell("pidgin");
 awful.util.spawn_with_shell("thunderbird");
 awful.util.spawn_with_shell("gnome-screensaver");
 awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
 awful.util.spawn_with_shell("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita';sleep 1;gsettings set org.gnome.desktop.interface gtk-theme 'delorean-dark'");
+awful.util.spawn_with_shell("pidgin");
