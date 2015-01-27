@@ -11,6 +11,6 @@ if [ $dp0 != '0' -a $dp2 != '0' ] ; then
     xrandr --output DP-0 --mode 1920x1200 --refresh 60 
 fi
 
-if [ $dp0 != '0' -a $dp2 == '0' ] ; then
+if [ $dp0 != '0' -a $dp2 = '0' ] ; then
     xrandr --output DP-0 --mode 1920x1200 --refresh 60 --right-of LVDS-0
 fi
