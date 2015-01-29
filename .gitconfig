@@ -1,6 +1,6 @@
 [user]
-  name = Mauro Carabotti
-  email = zeekox@gmail.com
+	name = Mauro Carabotti
+	email = carabotti@puzzle.ch
 [http]
   sslVerify = false
   postBuffer = 524288000
