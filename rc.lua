@@ -400,7 +400,7 @@ awful.rules.rules = {
       				maximized_vertical   = true,
                      maximized_horizontal = true } },
     { rule = { class = "Eclipse" },
-	properties = { floating = true, tag=tags[screen.count()][1] } },
+	properties = { floating = true, tag=tags[math.min(2,screen.count())][1] } },
      {rule = { class = "Eclipse", name="" },
       properties = { floating = true, tag=tags[screen.count()][1] } },
     { rule = { class = "Evince" },
@@ -425,7 +425,7 @@ awful.rules.rules = {
     { rule = { class = "Twinkle"},
       properties = { floating = true, tag = tags[screen.count()][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[1][1] } },
+      properties = { floating = false, tag = tags[1][2] } },
 	{ rule = { class = "Thunderbird", instance = "Msgcompose" },
       properties = { floating = true },
 	  callback = function(c) 

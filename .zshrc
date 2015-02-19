@@ -72,3 +72,5 @@ alias gitup='git stash; git pull; git stash pop'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export JBOSS_HOME="/home/mcarabotti/bin/jboss-ilw"

@@ -18,6 +18,7 @@
   tc = log --graph --pretty=format:'%Cblue%h%Creset %Creset%Cred%d' --abbrev-commit
   th = !git t | head
   ci = commit -v
+  cia = commit --amend --no-edit
   st = status
   s = status -s
   pr = pull --rebase --stat
