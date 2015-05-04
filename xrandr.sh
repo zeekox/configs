@@ -3,14 +3,5 @@ dp0=`xrandr -q | grep "DP-0 disconnected" > /dev/null ; echo $?`
 dp2=`xrandr -q | grep "DP-2 disconnected" > /dev/null ; echo $?`
 dp6=`xrandr -q | grep "DP-6 disconnected" > /dev/null ; echo $?`
 
-xrandr --output LVDS-0 --off
 
-if [ $dp0 != '0' -a $dp2 = '0' ] ; then
-  xrandr --output DP-0 --mode 1920x1200 --refresh 60 --right-of LVDS-0
-fi
-
-if [ $dp0 != '0' -a $dp2 != '0' ] ; then
-    xrandr --output DP-2 --mode 1920x1200 --refresh 60 --left-of LVDS-0
-    xrandr --output DP-0 --mode 1920x1200 --refresh 60 --left-of DP-2
-fi
-
+ xrandr --output LVDS1 --auto --pos 0x0 --output DP-0 --primary --auto --rotate normal --right-of LVDS1 --output DP-2 --auto --rotate normal --right-of DP-0

@@ -5,29 +5,4 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-PATH=$PATH:$HOME/bin
-
-source /etc/bash_completion.d/git-prompt
-
-# first part till second \w for window title
-PS1='\[\033]0; \w`__git_ps1`\007\]\[\e[0;32m\]\[\e[m\]\[\e[1;34m\]\w\[\033[0;31m\]`__git_ps1`\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
-
-set export EDITOR=vim
-export EDITOR=vim
-set export LC_TIME=en_GB
-
-export BROWSER="chromium-browser"
-export TERMCMD="urxvtc"
-export CHROME_BIN=/usr/bin/chromium-browser
-
-set PYTHONPATH=/usr/local/lib/python2.7/site-packages
-
 # User specific aliases and functions
-alias sus="sudo pm-suspend"
-alias bye="sudo shutdown -h now"
-alias vaw="gvim ~/.config/awesome/rc.lua &"
-alias ls="ls --color"
-alias ll="ls -l -h --color"
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
