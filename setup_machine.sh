@@ -1,5 +1,7 @@
-
-sudo apt-get install awesome awesome-extra vim-gnome git ctags rxvt-unicode-256color gmrun
+sudo add-apt-repository ppa:git-core/ppa
+sudo add-apt repository ppa:noobslab/theme
+sudo apt-get update
+sudo apt-get install git delorean-dark-3.12 awesome awesome-extra vim-gnome git ctags rxvt-unicode-256color gmrun
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "taking files from "$DIR
 
