@@ -1,7 +1,7 @@
 sudo add-apt-repository ppa:git-core/ppa
 sudo add-apt repository ppa:noobslab/theme
 sudo apt-get update
-sudo apt-get install git delorean-dark-3.12 awesome awesome-extra vim-gnome git ctags rxvt-unicode-256color gmrun
+sudo apt-get install git delorean-dark-3.12 awesome awesome-extra vim-gnome git ctags rxvt-unicode-256color gmrun libgnome-keyring-dev gnome-media
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "taking files from "$DIR
 
@@ -18,4 +18,11 @@ cd awesome
 ln -s $DIR/rc.lua
 ln -s $DIR/vicious
 ln -s $DIR/widget_fun.lua
-ln -s $DIR/widgets.lua
+ln -s $DIR/widgets.luasudo apt-get install libgnome-keyring-dev
+
+
+cd /usr/share/doc/git/contrib/credential/gnome-keyring
+sudo make
+git config --global credential.helper /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+
+
