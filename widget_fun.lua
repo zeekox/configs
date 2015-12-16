@@ -1,7 +1,7 @@
 local io = io
 local math = math
-local naughty = naughty
-local beautiful = beautiful
+local naughty = require("naughty")
+local beautiful = require("beautiful")
 local pairs = pairs
 local require = require
 
