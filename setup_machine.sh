@@ -1,7 +1,7 @@
 sudo add-apt-repository ppa:git-core/ppa
 sudo add-apt repository ppa:noobslab/theme
 sudo apt-get update
-sudo apt-get install git delorean-dark-3.12 awesome awesome-extra vim-gnome git ctags rxvt-unicode-256color gmrun libgnome-keyring-dev gnome-media
+sudo apt-get install git delorean-dark-3.16 awesome awesome-extra vim-gnome git ctags rxvt-unicode-256color gmrun libgnome-keyring-dev gnome-media
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "taking files from "$DIR
 
