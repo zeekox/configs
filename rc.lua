@@ -238,6 +238,9 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+-- command used to set volume, used multiple times
+setVolume = "amixer -D pulse sset Master "
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
@@ -298,7 +301,11 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    -- Volume controls
+    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn(setVolume .. "5%+") end),
+    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn(setVolume .. "5%-") end),
+    awful.key({ }, "XF86AudioMute",    function () awful.util.spawn(setVolume .. "toggle") end)
 )
 
 clientkeys = awful.util.table.join(
