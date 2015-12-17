@@ -44,6 +44,7 @@ do
         in_error = false
     end)
 end
+
 -- }}}
 
 -- {{{ Variable definitions
@@ -103,6 +104,7 @@ layouts =
  
  for s = 1, screen.count() do
      tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
+     gears.wallpaper.maximized("/usr/share/awesome/themes/zenburn/zenburn-background.png",s,true)
  end
 --end
 -- }}}
