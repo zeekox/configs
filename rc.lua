@@ -133,8 +133,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
-
+clockwidget = wibox.widget.textbox()
+vicious.register(clockwidget, vicious.widgets.date, "  %d/%m  %R  ", 20)
 -- battery status
 batterywidget = wibox.widget.textbox()
 vicious.register(batterywidget, vicious.widgets.bat, widget_fun.batclosure(), 31, "BAT0")
@@ -219,7 +219,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(batterywidget)
-    right_layout:add(mytextclock)
+    right_layout:add(clockwidget)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
