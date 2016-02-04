@@ -1,0 +1,152 @@
+#!/bin/bash
+#
+# Maintains a rotating backup using hardlinks to minimize disk space usage.
+#
+# Pass two arguments: rsync_backup SOURCE_PATH BACKUP_PATH for local backups or three for remote backups using ssh
+#
+# Based on http://www.noah.org/wiki/Rsync_backup
+# original version: http://www.noah.org/engineering/src/shell/rsync_backup
+
+usage() {
+    echo "usage: rsync_backup [-v] SOURCE_PATH BACKUP_PATH [SSH_HOST]"
+    echo "    SOURCE_PATH directory to backup"
+    echo "    BACKUP_PATH directory where you want the backup set to be stored"
+    echo "    SSH_HOST ssh host to use like user@host"
+    echo "    -v : set verbose mode"
+}
+
+BACKUP_COUNT=20
+MOST_RECENT_BACKUP=0
+NORMALIZE_PERMS=0
+while getopts ":vnh" options; do
+    case $options in
+        v ) VERBOSE=1;;
+        n ) NORMALIZE_PERMS=1;;
+        h ) usage
+            exit 1;;
+        \? ) usage
+            exit 1;;
+        * ) usage
+            exit 1;;
+    esac
+done
+shift $(($OPTIND - 1))
+SOURCE_PATH=$1
+BACKUP_PATH=$2
+SSH_LOGIN=$3
+
+if [ -z $SOURCE_PATH ] ; then
+    echo "Missing argument. Give source path and backup path."
+    usage
+    exit 1
+fi
+if [ -z $BACKUP_PATH ] ; then
+    echo "Missing argument. Give source path and backup path."
+    usage
+    exit 1
+fi
+if [ -z $SSH_LOGIN ] ; then
+	  echo "local mode"
+else
+	  echo "SSH destination: '$SSH_LOGIN'"
+		SSH_MODE=1
+fi
+
+echo
+echo '         .-""-.'
+echo '       _|_o_LII|_'
+echo '      / | ==== | \'
+echo '      |_| ==== |_|'
+echo '       ||" ||  ||'
+echo '       ||LI  o ||'
+echo '       ||"----"||\'
+echo '      /__|     |__\'
+echo
+echo 'Backup piou pi pi bib'
+echo
+
+SOURCE_BASE=`basename $SOURCE_PATH`
+PERMS_DIR=755
+PERMS_FILE=644
+RSYNC_OPTS="-azH --delete --exclude '.npm' --exclude '.cache' --exclude '.bower' --exclude 'music' --exclude 'node_modules' --exclude 'tmp' --exclude '**/tmp/**' --exclude 'Downloads'"
+
+if [ $VERBOSE ]; then
+    RSYNC_VERBOSE="-v -h --progress"
+    date
+else
+    RSYNC_VERBOSE="-q"
+fi
+
+init_backup_dir() {
+    if [ $SSH_MODE ]; then
+ 	      if ssh $SSH_LOGIN '[ ! -d '$1' ]' ; then
+	         ssh $SSH_LOGIN mkdir $1
+  			fi 	  
+    else
+	      if [ ! -d $1 ] ; then
+	         mkdir $1
+  			fi
+ 		fi
+}
+
+# Create the rotation directories if they don't exist.
+
+init_backup_dir $BACKUP_PATH
+
+for (( c=$MOST_RECENT_BACKUP; c<=$BACKUP_COUNT; c++ )) do
+		init_backup_dir $BACKUP_PATH/$SOURCE_BASE.$c
+done
+
+CMD_PREFIX=""
+if [ $SSH_MODE ]; then
+    CMD_PREFIX='ssh '$SSH_LOGIN
+fi
+
+# remove oldest backup
+$CMD_PREFIX rm -rf $BACKUP_PATH/$SOURCE_BASE.$BACKUP_COUNT
+
+# shift backups
+for (( c=$BACKUP_COUNT-1; c>$MOST_RECENT_BACKUP; c-- )) do
+		$CMD_PREFIX mv $BACKUP_PATH/$SOURCE_BASE.$c $BACKUP_PATH/$SOURCE_BASE.$(($c + 1))
+done
+
+# copy newest to next position
+if [ $VERBOSE ]; then
+		echo "copy last backup..."
+fi
+eval $CMD_PREFIX cp -al $BACKUP_PATH/$SOURCE_BASE.$MOST_RECENT_BACKUP $BACKUP_PATH/$SOURCE_BASE.$(($MOST_RECENT_BACKUP + 1))
+
+# Backup.
+RSYNC_PREFIX=""
+if [ $SSH_MODE ]; then
+    RSYNC_PREFIX=$SSH_LOGIN':'
+fi
+eval rsync $RSYNC_VERBOSE $RSYNC_OPTS --link-dest=$BACKUP_PATH/$SOURCE_BASE.$(($MOST_RECENT_BACKUP + 1)) $SOURCE_PATH/. $RSYNC_PREFIX$BACKUP_PATH/$SOURCE_BASE.$MOST_RECENT_BACKUP/.
+RSYNC_EXIT_STATUS=$?
+
+# Ignore error code 24, "rsync warning: some files vanished before they could be transferred".
+if [ $RSYNC_EXIT_STATUS = 24 ] ; then
+    RSYNC_EXIT_STATUS=0
+fi
+
+# Create a timestamp file to show when backup process completed successfully.
+
+LAST_BACKUP=$BACKUP_PATH/$SOURCE_BASE.$MOST_RECENT_BACKUP
+
+# always remove to get different files, unless hardlinks will also be modified!
+$CMD_PREFIX rm -f $LAST_BACKUP/BACKUP_TIMESTAMP
+$CMD_PREFIX rm -f $LAST_BACKUP/BACKUP_ERROR
+
+if [ $RSYNC_EXIT_STATUS = 0 ] ; then
+    $CMD_PREFIX "date > $LAST_BACKUP/BACKUP_TIMESTAMP"
+else # Create a timestamp if there was an error.
+    $CMD_PREFIX "echo 'rsync failed' > $LAST_BACKUP/BACKUP_ERROR"
+    $CMD_PREFIX "date >> $LAST_BACKUP/BACKUP_ERROR"
+    $CMD_PREFIX "echo $RSYNC_EXIT_STATUS >> $LAST_BACKUP/BACKUP_ERROR"
+fi
+
+if [ $VERBOSE ]; then
+    date
+fi
+
+exit $RSYNC_EXIT_STATUS
