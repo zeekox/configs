@@ -546,8 +546,10 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Autorun programs
+awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
+awful.util.spawn_with_shell("chromium-browser");
 awful.util.spawn_with_shell("urxvtd");
 awful.util.spawn_with_shell("wmname LG3D");
 awful.util.spawn_with_shell("gnome-settings-daemon");
 awful.util.spawn_with_shell("gnome-screensaver");
-awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
+awful.util.spawn_with_shell("nm-applet");
