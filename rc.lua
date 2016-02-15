@@ -90,15 +90,15 @@ layouts =
    settings = {
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-	   layout = { layouts[2], layouts[6], layouts[2], layouts[6]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[6]}
      },
      { 
        names  = { "ڞ", "ऄ", "Ԡ", "†"},
-	   layout = { layouts[2], layouts[6], layouts[2], layouts[6]}
+	   layout = { layouts[2], layouts[2], layouts[2], layouts[6]}
      },
      {
        names  = { "ڞ", "ऄ", "Ԡ", "⌥"},
-       layout = { layouts[2], layouts[6], layouts[2], layouts[6]}
+       layout = { layouts[2], layouts[2], layouts[2], layouts[6]}
      }
 }}
  
@@ -550,6 +550,6 @@ awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-comma
 awful.util.spawn_with_shell("chromium-browser");
 awful.util.spawn_with_shell("urxvtd");
 awful.util.spawn_with_shell("wmname LG3D");
-awful.util.spawn_with_shell("gnome-settings-daemon");
+awful.util.spawn_with_shell("unity-settings-daemon");
 awful.util.spawn_with_shell("gnome-screensaver");
 awful.util.spawn_with_shell("nm-applet");
