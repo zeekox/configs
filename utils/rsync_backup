@@ -68,7 +68,7 @@ echo
 SOURCE_BASE=`basename $SOURCE_PATH`
 PERMS_DIR=755
 PERMS_FILE=644
-RSYNC_OPTS="-azH --delete --exclude '.npm' --exclude '.cache' --exclude '.bower' --exclude 'music' --exclude 'node_modules' --exclude 'tmp' --exclude '**/tmp/**' --exclude 'Downloads'"
+RSYNC_OPTS="-azH --delete --exclude 'VirtualBox\ VMs' --exclude '.npm' --exclude '.cache' --exclude '.bower' --exclude 'music' --exclude 'node_modules' --exclude 'tmp' --exclude '**/tmp/**' --exclude 'Downloads'"
 
 if [ $VERBOSE ]; then
     RSYNC_VERBOSE="-v -h --progress"
