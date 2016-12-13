@@ -118,9 +118,13 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { 
+                                    { "shutdown", function() awful.util.spawn_with_shell("sudo shutdown now") end, beautiful.awesome_icon},
+                                    { "reboot", function() awful.util.spawn_with_shell("reboot") end},
+                                    { "edit config", editor_cmd .. " " .. awesome.conffile },
+                                    { "awesome", myawesomemenu},
                                     { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }
+                                    { "quit", awesome.quit}
                                   }
                         })
 
@@ -545,11 +549,22 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
+function run_once(cmd)
+  findme = cmd
+  firstspace = cmd:find(" ")
+  if firstspace then
+    findme = cmd:sub(0, firstspace-1)
+  end
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+end
+
 -- Autorun programs
-awful.util.spawn_with_shell("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
-awful.util.spawn_with_shell("chromium-browser");
-awful.util.spawn_with_shell("urxvtd");
-awful.util.spawn_with_shell("wmname LG3D");
-awful.util.spawn_with_shell("unity-settings-daemon");
-awful.util.spawn_with_shell("gnome-screensaver");
-awful.util.spawn_with_shell("nm-applet");
+run_once("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
+run_once("chromium-browser --password-store=gnome");
+run_once("urxvtd");
+run_once("wmname LG3D");
+run_once("unity-settings-daemon");
+run_once("gnome-screensaver");
+run_once("nm-applet");
+run_once("thunderbird");
+run_once("killall thunderbird && sleep 1 && thunderbird");
