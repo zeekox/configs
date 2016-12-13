@@ -10,9 +10,12 @@ module("widget_fun")
 
 -- Battery (based on http://awesome.naquadah.org/wiki/Gigamo_Battery_Widget)
 
-local limits = {{25, 5},
-          {12, 3},
-          { 7, 1},
+local limits = {
+          {25, 5},
+          {20, 4},
+          {15, 3},
+          {10, 2},
+          { 5, 1},
             {0}}
 
 function getnextlim (num)
@@ -34,14 +37,14 @@ end
 function batclosure ()
     local nextlim = 97--limits[1][1]
     return function (_, args)
-        local state, charge = args[1], args[2]
+        local state, charge, time = args[1], args[2], args[3]
         if not charge then return end
         if state == "-" then
             dirsign = "↓"
             if charge <= nextlim then
-                naughty.notify({title = "⚡ BATTERIE ⚡",
-                                text = "Plus que "..charge.."% !",
-                                timeout = 7,
+                naughty.notify({title = "⚡ BATTERIE "..charge.."% ⚡",
+                                text = "plug, plug, plug !!! -> "..time.."",
+                                timeout = 30,
                                 position = "top_right",
                                 fg = beautiful.fg_focus,
                                 bg = beautiful.bg_focus
@@ -50,8 +53,24 @@ function batclosure ()
             end
         elseif state == "+" then
             dirsign = "↑"
+            if charge == 80 then
+                naughty.notify({title = "⚡ BATTERIE 80% ⚡",
+                    text = "Time to unplug ...",
+                    timeout = 30,
+                    position = "top_right",
+                    fg = beautiful.fg_focus,
+                    bg = beautiful.bg_focus
+                })
+            end
             nextlim = limits[1][1]
         else
+            naughty.notify({title = "⚡ BATTERIE CHARGÉE ⚡",
+                text = " 100% ",
+                timeout = 30,
+                position = "top_right",
+                fg = beautiful.fg_focus,
+                bg = beautiful.bg_focus
+            })
             dirsign = ""
             return "⚡" 
         end
