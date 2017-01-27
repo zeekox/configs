@@ -418,15 +418,15 @@ awful.rules.rules = {
       properties = { floating = false, tag=tags[math.min(2,screen.count())][1] } },
     { rule = { class = "Firefox", instance = "Firebug" },
       properties = { floating = true, tag=tags[math.min(2,screen.count())][1]} }, 
-    { rule = { class = "Chromium-browser" },
-      properties = { floating = true }, 
-      callback = function(c) center_on_screen(c, 1, 0.70) end },
+--    { rule = { class = "Chromium-browser" },
+--      properties = { floating = true }, 
+--      callback = function(c) center_on_screen(c, 1, 0.70) end },
     { rule = { class = "Eclipse" },
-      properties = { floating = true, tag=tags[math.min(3,screen.count())][1],
+      properties = { floating = true, tag=tags[math.min(3,screen.count())][2],
       				maximized_vertical   = true,
       				maximized_horizontal = true } },
      {rule = { class = "Eclipse", name="" },
-      properties = { floating = true, tag=tags[math.min(1,screen.count())][1],
+      properties = { floating = true, tag=tags[math.min(1,screen.count())][2],
       				maximized_vertical   = false,
       				maximized_horizontal = false } },
 
@@ -452,7 +452,7 @@ awful.rules.rules = {
     { rule = { class = "Twinkle"},
       properties = { floating = true, tag = tags[screen.count()][4] } },
 	{ rule = { class = "Thunderbird"},
-      properties = { floating = false, tag = tags[1][2], sticky=false } },
+      properties = { floating = false, tag = tags[1][4], sticky=false } },
 	{ rule = { class = "Thunderbird", instance = "Msgcompose" },
       properties = { floating = true },
 	  callback = function(c) 
@@ -555,16 +555,17 @@ function run_once(cmd)
   if firstspace then
     findme = cmd:sub(0, firstspace-1)
   end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+  awful.util.spawn_with_shell("pgrep -u $USER -x '" .. findme .. "' > /dev/null || (" .. cmd .. ")")
 end
 
 -- Autorun programs
-run_once("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
-run_once("chromium-browser --password-store=gnome");
+run_once("xautolock -time 20 -corners ----  -locker 'gnome-screensaver-command --lock'");
+-- workaround chromium-browse not browser is the process name
+awful.util.spawn_with_shell("pgrep -u $USER -x 'chromium-browse' > /dev/null || (chromium-browser --password-store=gnome)")
 run_once("urxvtd");
 run_once("wmname LG3D");
 run_once("unity-settings-daemon");
 run_once("gnome-screensaver");
 run_once("nm-applet");
-run_once("thunderbird");
-run_once("killall thunderbird && sleep 1 && thunderbird");
+-- run_once("thunderbird");
+-- run_once("killall thunderbird && sleep 1 && thunderbird");

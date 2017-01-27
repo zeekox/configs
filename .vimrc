@@ -173,7 +173,7 @@ autocmd filetype html,xml set listchars-=tab:>.
 autocmd Filetype html,xml,xsl,jsp,js,txt source ~/.vim/plugin/closetag.vim
 au FileType gitcommit set tw=200
 
-"call pathogen#infect() 
+call pathogen#infect() 
 
 " Remove menu bar
 set guioptions-=m
@@ -186,4 +186,3 @@ let g:JSHintHighlightErrorLine = 0
 
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype javascript,xml setlocal ts=4 sw=4 sts=0 expandtab

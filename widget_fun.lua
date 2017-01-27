@@ -53,15 +53,6 @@ function batclosure ()
             end
         elseif state == "+" then
             dirsign = "↑"
-            if charge == 80 then
-                naughty.notify({title = "⚡ BATTERIE 80% ⚡",
-                    text = "Time to unplug ...",
-                    timeout = 30,
-                    position = "top_right",
-                    fg = beautiful.fg_focus,
-                    bg = beautiful.bg_focus
-                })
-            end
             nextlim = limits[1][1]
         else
             naughty.notify({title = "⚡ BATTERIE CHARGÉE ⚡",
