@@ -559,7 +559,7 @@ function run_once(cmd)
 end
 
 -- Autorun programs
-run_once("xautolock -time 20 -corners ----  -locker 'gnome-screensaver-command --lock'");
+run_once("xautolock -time 10 -locker 'gnome-screensaver-command --lock'");
 -- workaround chromium-browse not browser is the process name
 awful.util.spawn_with_shell("pgrep -u $USER -x 'chromium-browse' > /dev/null || (chromium-browser --password-store=gnome)")
 run_once("urxvtd");
@@ -567,5 +567,6 @@ run_once("wmname LG3D");
 run_once("unity-settings-daemon");
 run_once("gnome-screensaver");
 run_once("nm-applet");
+run_once("caffeine");
 -- run_once("thunderbird");
 -- run_once("killall thunderbird && sleep 1 && thunderbird");
