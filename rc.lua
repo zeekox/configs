@@ -309,8 +309,8 @@ globalkeys = awful.util.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
     -- Volume controls
-    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn(setVolume .. "5%+") end),
-    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn(setVolume .. "5%-") end),
+    awful.key({ }, "XF86AudioRaiseVolume",    function () awful.util.spawn("volume_up.sh") end),
+    awful.key({ }, "XF86AudioLowerVolume",    function () awful.util.spawn("volume_down.sh") end),
     awful.key({ }, "XF86AudioMute",    function () awful.util.spawn(setVolume .. "toggle") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 5") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 5") end)
